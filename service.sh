@@ -12,15 +12,15 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
     sleep 1
 done
 
-# 再等几秒确保 PackageManager 就绪
-sleep 7
+# 再等下，讓PackageManager開好
+sleep 6
 
 # 執行操作
 pm set-home-activity com.miui.home
 sleep 1
 
 input keyevent 3
-sleep 3
+sleep 2
 
 pm set-home-activity com.teslacoilsw.launcher
 sleep 1
