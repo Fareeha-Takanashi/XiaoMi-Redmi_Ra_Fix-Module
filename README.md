@@ -1,5 +1,6 @@
 # 紅米K40多任務卡死修復
-Fix Redmi K40 Long press in <recent apps> stuck
+Fix Redmi K40 Long press in [recent apps] stuck with unofficial Launcher
+
 本模塊用於修復：
 - 不用小米的Launcher導致最近任務界面RecentsActivity長按應用會卡死的神奇BUG
 
