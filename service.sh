@@ -12,15 +12,17 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
     sleep 1
 done
 
-
 # 監看events日誌緩衝區的標記
 # "grep -m 1"表示在找到第一個匹配項後立即退出
 # "uc_unlock_user"如果提前出/不出，可以找找别的
 logcat -b events | grep -m 1 "uc_unlock_user"
+sleep 2
 
+#取得原來設定的
+RowLauncher=$(cmd package resolve-activity -c android.intent.category.HOME -a android.intent.action.MAIN | grep 'packageName=' | head -n 1 | awk -F'=' '{print $2}')
 
 # 再等下，給PackageManager點時間
-sleep 2
+sleep 1
 
 # 執行操作
 pm set-home-activity com.miui.home
@@ -29,12 +31,11 @@ sleep 1
 input keyevent 3
 sleep 2
 
-# 不用NOVA的話，"com.teslacoilsw.launcher"換成你的launcher包名
-pm set-home-activity com.teslacoilsw.launcher
+# 換回去
+pm set-home-activity $RowLauncher
 sleep 1
 
 input keyevent 3
-
 
 
 exit 0
